@@ -1,0 +1,53 @@
+.battlescreen{
+    font-size: 20px;
+    display:flex;
+    flex-direction: column;
+    text-align: center;  
+}
+
+.heading{
+    display:flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+}
+
+.infoP1{
+    display:flex;
+    flex-direction: column; 
+}
+
+.log{
+    display:flex;
+    flex-direction: column;
+}
+
+.infoP2{
+    display:flex;
+    flex-direction: column;
+}
+
+.playerAvatars, .actions{
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+}
+
+.avatarP1{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+}
+
+.avatarP2{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+}
+
+#health2{
+    transform:rotate(180deg);
+-ms-transform:rotate(180deg); 
+-webkit-transform:rotate(180deg); 
+}
+
+

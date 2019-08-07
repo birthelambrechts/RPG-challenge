@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='./scss/style.css' />
+    <!--<script src="./Js/gamelogic.js" defer></script>-->
+    <title>RPG</title>
+</head>
+
+<br>
+<!--startscreen-->
+<div class="startscreen" id="startscreen"><br>
+    <form class="startP1" id="startP1">
+        <div class="selectNameP1">
+            <input type="text" name="nameP1" class="nameP1" placeholder="Enter your name"><br>
+        </div>
+        <div class="selectRaceP1">
+            <label for="raceP1">Select your race</label>
+            <input type="button" id="buttons" class="HumanP1" value="Human">
+            <input type="button" id="buttons" class="OrcP1" value="Orc"><br>
+            <input type="button" id="buttons" class="ElfP1" value="Elf">
+            <input type="button" id="buttons" class="VampireP1" value="Vampire">
+        </div>
+        <div class="selectItemsP1">
+            <label for="ItemP1">Select your item</label>
+            <input type="button" id="buttons" class="BootsP1" value="Boots">
+            <input type="button" id="buttons" class="StaffP1" value="Staff"><br>
+            <input type="button" id="buttons" class="SwordP1" value="Sword">
+            <input type="button" id="buttons" class="BowP1" value="Bow">
+        </div>
+
+    </form>
+
+
+    <div class="versus">
+        <H1>VS</H1>
+    </div>
+
+
+    <form class="startP2" id="startP2">
+        <div class="selectNameP2">
+            <input type="text" name="nameP2" class="nameP2" placeholder="Enter your name"><br>
+        </div>
+        <div class="selectRaceP2">
+            <label for="raceP2">Select your race</label>
+            <input type="button" id="buttons" class="HumanP2" value="Human">
+            <input type="button" id="buttons" class="OrcP2" value="Orc"><br>
+            <input type="button" id="buttons" class="ElfP2" value="Elf">
+            <input type="button" id="buttons" class="VampireP2" value="Vampire">
+        </div>
+
+
+        <div class="selectItemsP2">
+            <label for="ItemP2">Select your item</label>
+            <input type="button" id="buttons" class="BootsP2" value="Boots">
+            <input type="button" id="buttons" class="StaffP2" value="Staff"><br>
+            <input type="button" id="buttons" class="SwordP2" value="Sword">
+            <input type="button" id="buttons" class="BowP2" value="Bow">
+
+        </div>
+
+        <div class="ready"><button class="ready" id="ready" onclick="removeStartscreen()">Ready?</button></div>
+
+    </form>
+
+</div>
+
+
+<br>
+
+
+<!--battlescreen-->
+<div class="battlescreen" id="battlescreen">
+    <div class="heading">
+        <div class="infoP1">
+            <div class="nameP1">
+                <H3>NAME p1</H3>
+                <div class="logoItemP1"></div>
+            </div>
+
+            <div class="healthbarP1">
+                <progress id="health1"  ></progress>
+                <div class="healthNumber1" id="healthNumber1"></div>
+            </div>
+        </div>
+
+        <div class="log"> First action
+            <br> second action
+            <br> third action
+        </div>
+
+        <div class="infoP2">
+            <div class="nameP2">
+                <H3>NAME p2</H3>
+                <div class="logoItemP2"></div>
+            </div>
+
+            <div class="healthbarP2"> <progress id="health2" ></progress>
+                <div class="healthNumber2" id="healthNumber2"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="playerAvatars">
+        <div class="avatarP1"></div>
+        <div class="avatarP2"></div>
+    </div>
+
+
+
+    <div class="actions">
+        <div class="movelistP1">
+            <h4>Movelist</h4>
+            <button class="attackP1">Attack</button>
+            <button class="healP1">Heal</button>
+            <button class="yieldP1">Yield</button>
+        </div>
+        <div class="movelistP2">
+            <h4>Movelist</h4>
+            <button class="attackP2">Attack</button>
+            <button class="healP2">Heal</button>
+            <button class="yieldP2">Yield</button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script>
+    let currenthealth = 50;
+    let maxHealth = 100;
+
+    function hidebattlescreen() {
+        document.getElementById("battlescreen").style.visibility = "hidden";
+    }
+
+    hidebattlescreen()
+
+    function removeStartscreen() {
+        var element = document.getElementById("startscreen");
+        element.remove("startscreen");
+        document.getElementById("battlescreen").style.visibility = "visible";
+    }
+
+
+    function healthbar() {
+        document.getElementById("healthNumber1").innerHTML = currenthealth + "/" + maxHealth;
+    }
+
+    function healthbar2() {
+        document.getElementById("healthNumber2").innerHTML = currenthealth + "/" + maxHealth;
+    }
+
+    healthbar()
+    healthbar2()
+
+
+    document.getElementById("health1").value = currenthealth;
+    
+    document.getElementById("health2").value = currenthealth;
+
+    document.getElementById("health1").max = maxHealth;
+    
+    document.getElementById("health2").max = maxHealth;
+ 
+</script>
+
+</html>
