@@ -7,7 +7,7 @@ let p2ItemButton = document.getElementById("p2item");
 let p1AttackButton = document.getElementById("p1attack");
 
 
-let human = "human";
+
 let orc = "orc";
 let elf = "elf";
 let vampire = "vampire";

@@ -1,23 +1,27 @@
-
-.startscreen{
+.startscreen {
     font-size: 20px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     text-align: center;
     justify-content: center;
-#buttons{
-    font-size: 20px;
-    width: 80px;
-    height: 80px;
-}
+
+    button {
+        font-size: 20px;
+        width: 80px;
+        height: 80px;
+    }
 }
 
-.startP1, .startP2{
-    display:flex;
-   flex-flow: column wrap;
+.startP1,
+.startP2 {
+    display: flex;
+    flex-flow: column wrap;
 }
 
-.selectRaceP1, .selectItemsP1, .selectRaceP2, .selectItemsP2 {
+.selectRaceP1,
+.selectItemsP1,
+.selectRaceP2,
+.selectItemsP2 {
     margin: 5px;
     height: 200px;
     width: 200px;
@@ -26,23 +30,15 @@
 
 }
 
-.submitP1, .submitP2{
-width: 100%;
-}
-
-.ready{
-margin-left:-50%;
-}
-
-.versus{
-    margin-top:0%;
-}
-
-
-.mystyle {
+.submitP1,
+.submitP2 {
     width: 100%;
-    padding: 25px;
-    background-color: coral;
-    color: white;
-    font-size: 25px;
-  }
+}
+
+.ready {
+    margin-left: -50%;
+}
+
+.versus {
+    margin-top: 0%;
+}
