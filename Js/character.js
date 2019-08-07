@@ -1,24 +1,29 @@
-//Use this script to generate your character
-export default function Person(race,item){
+export default function Person(race, item) {
     this.race = race;
     this.item = item;
-    this.currenthealth = 100;
+    this.currentHealth = 100;
     this.maxHealth = 100;
-    
+
     this.min = 3;
     this.maxDamage = 20;
     this.maxHealing = 30;
 
-    this.heal = function(){};
+    this.heal = function() {Math.floor(Math.random() * this.maxHealing) + this.min}
 
-    this.damage = function(){};
+    this.damage = Math.floor(Math.random() * this.maxDamage) + this.min
 
-    this.totalDamage = this.damage();
+    this.totalDamage = this.damage // + race modifiers;
 
-    displayChar(this.race,this.item,this.maxHealth);
-}
+    this.classBonusHuman = "";
+    this.classBonusElf = "";
+    this.classBonusVampire = "";
 
-//Delete this functiom
-function displayChar(race,item,maxHealth){
-    return console.log(`I am a ${race}, I wield a ${item}, my total health point are ${maxHealth}`);
+    this.itemBonusBoots = "";
+    this.itemBonusStaff = "";
+    this.itemBonusSword = "";
+    this.itemBonusBow = "";
+    
+    this.test = function(){return}
+
+    // displayChar(this.race,this.item,this.maxHealth);
 }
