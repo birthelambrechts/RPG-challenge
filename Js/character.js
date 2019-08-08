@@ -27,3 +27,9 @@ export default function Person(race, item) {
 
     // displayChar(this.race,this.item,this.maxHealth);
 }
+
+
+
+
+
+

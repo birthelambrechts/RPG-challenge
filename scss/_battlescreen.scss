@@ -1,9 +1,20 @@
+.container{
+ 
+    width: 1296px;
+    height: 669px;
+    background-image: url("bg1.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
 .battlescreen{
+    
     font-size: 20px;
     display:flex;
     flex-direction: column;
     text-align: center;  
 }
+
 
 .heading{
     display:flex;
@@ -34,12 +45,14 @@
 
 .avatarP1{
     background-color: black;
+    margin-top: 17%;
     width: 200px;
     height: 200px;
 }
 
 .avatarP2{
-    background-color: black;
+   background-color: black;
+    margin-top: 17%;
     width: 200px;
     height: 200px;
 }

@@ -6,6 +6,7 @@
 }
 
 .startscreen {
+  margin-top: 5%;
   font-size: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,13 +21,19 @@
           justify-content: center;
 }
 
-.startscreen #buttons {
+.startscreen button {
   font-size: 20px;
   width: 80px;
   height: 80px;
+  background-color: rgba(133, 133, 133, 0.747);
 }
 
-.startP1, .startP2 {
+.startscreen .activebutton {
+  background-color: pink;
+}
+
+.startP1,
+.startP2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,8 +43,11 @@
           flex-flow: column wrap;
 }
 
-.selectRaceP1, .selectItemsP1, .selectRaceP2, .selectItemsP2 {
-  margin: 5px;
+.selectRaceP1,
+.selectItemsP1,
+.selectRaceP2,
+.selectItemsP2 {
+  margin: 10px;
   height: 200px;
   width: 200px;
   display: -webkit-box;
@@ -49,7 +59,8 @@
           flex-flow: column wrap;
 }
 
-.submitP1, .submitP2 {
+.submitP1,
+.submitP2 {
   width: 100%;
 }
 
@@ -58,15 +69,16 @@
 }
 
 .versus {
-  margin-top: 0%;
+  margin-top: 15%;
+  padding: 20px;
 }
 
-.mystyle {
-  width: 100%;
-  padding: 25px;
-  background-color: coral;
-  color: white;
-  font-size: 25px;
+.container {
+  width: 1296px;
+  height: 669px;
+  background-image: url("bg1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .battlescreen {
@@ -138,12 +150,14 @@
 
 .avatarP1 {
   background-color: black;
+  margin-top: 17%;
   width: 200px;
   height: 200px;
 }
 
 .avatarP2 {
   background-color: black;
+  margin-top: 17%;
   width: 200px;
   height: 200px;
 }

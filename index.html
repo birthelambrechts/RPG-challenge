@@ -10,16 +10,17 @@
     <title>RPG</title>
 </head>
 
-<br>
+
+
 <!--startscreen-->
 <div class="startscreen" id="startscreen"><br>
     <div class="startP1" id="startP1">
         <div class="selectNameP1">
-            <input type="text" name="nameP1" class="nameP1" placeholder="Enter your name"><br>
+            <input type="text" name="InputNameP1" id="InputNameP1" placeholder="Enter your name"><br>
         </div>
         <div class="selectRaceP1">
             <div class="raceP1">Select your race</div>
-            <button id="buttons" class="HumanP1" value="Human">Human</button>
+            <button id="buttons" class="HumanP1" value="Human" ><img src="elf.png" alt="">Human</button>
             <button id="buttons" class="OrcP1" value="Orc">Orc</button><br>
             <button id="buttons" class="ElfP1" value="Elf">Elf</button>
             <button id="buttons" class="VampireP1" value="Vampire">Vampire</button>
@@ -42,7 +43,7 @@
 
     <div class="startP2" id="startP2">
         <div class="selectNameP2">
-            <input type="text" name="nameP2" class="nameP2" placeholder="Enter your name"><br>
+            <input type="text" name="InputNameP2" id="InputNameP2" placeholder="Enter your name"><br>
         </div>
         <div class="selectRaceP2">
             <div class="raceP2">Select your race</div>
@@ -67,18 +68,17 @@
     </div>
 
 </div>
-
-
-<br>
-
+</div>
 
 <!--battlescreen-->
+
 <div class="battlescreen" id="battlescreen">
+        <div class="container" >
     <div class="heading">
         <div class="infoP1">
-            <div class="nameP1">
-                <H3>NAME p1</H3>
-                <div class="logoItemP1"></div>
+            <div class="nameP1" id="nameP1">
+               
+
             </div>
 
             <div class="healthbarP1">
@@ -87,15 +87,12 @@
             </div>
         </div>
 
-        <div class="log"> First action
-            <br> second action
-            <br> third action
+        <div class="log" id="log"> 
         </div>
 
         <div class="infoP2">
-            <div class="nameP2">
-                <H3>NAME p2</H3>
-                <div class="logoItemP2"></div>
+            <div class="nameP2" id="nameP2">
+               
             </div>
 
             <div class="healthbarP2"> <progress id="health2" ></progress>
@@ -130,11 +127,13 @@
     </div>
 </div>
 
+
 </body>
 <script>
-    let currenthealth = 50;
-    let maxHealth = 100;
 
+let currenthealth = 50;
+let maxHealth = 100;
+    
     function hidebattlescreen() {
         document.getElementById("battlescreen").style.visibility = "hidden";
     }
@@ -156,8 +155,6 @@
         document.getElementById("healthNumber2").innerHTML = currenthealth + "/" + maxHealth;
     }
 
-    healthbar()
-    healthbar2()
 
 
     document.getElementById("health1").value = currenthealth;
@@ -167,7 +164,27 @@
     document.getElementById("health1").max = maxHealth;
     
     document.getElementById("health2").max = maxHealth;
- 
+
+
+function moveLog(race,damage,maxHealth){
+    for (y = 0; y < 3; y++) {
+document.getElementById("log").innerHTML = `${race} dealed ${damage} damage`;
+}
+}
+moveLog()
+
+function myFunction() {
+    console.log("do myFunction")
+  document.getElementById("nameP1").innerHTML = `${playerName}`;
+  console.log(x)
+}
+
+
+
+document.getElementById("ready").addEventListener("click", setVariables)
+
+
+
 </script>
 
 </html>
