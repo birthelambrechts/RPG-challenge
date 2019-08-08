@@ -1,4 +1,5 @@
-export default function Person(race, item) {
+export default function Person(defaultName, race, item) {
+    this.name = defaultName
     this.race = race;
     this.item = item;
     this.currentHealth = 100;
@@ -12,7 +13,7 @@ export default function Person(race, item) {
 
     this.damage = function () {return Math.floor(Math.random() * this.maxDamage) + this.min}
 
-    this.totalDamage = this.damage // + race modifiers;
+    this.totalDamage = "" // + race modifiers;
 
     this.classBonusHuman = "";
     this.classBonusElf = "";
@@ -22,10 +23,6 @@ export default function Person(race, item) {
     this.itemBonusStaff = "";
     this.itemBonusSword = "";
     this.itemBonusBow = "";
-    
-    this.test = function(){return}
-
-    // displayChar(this.race,this.item,this.maxHealth);
 }
 
 

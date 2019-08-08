@@ -1,19 +1,21 @@
 import Person from "./character.js";
 
+// ||-------Player creation-------||
 // Create nodelists for race and item buttons
 let p1RaceButton = document.querySelectorAll("div.selectRaceP1 button");
-let p1ItemButton = document.querySelectorAll("div.selectItemsP1 button")
-let p2RaceButton = document.querySelectorAll("div.selectRaceP2 button")
-let p2ItemButton = document.querySelectorAll("div.selectItemsP2 button")
+let p1ItemButton = document.querySelectorAll("div.selectItemsP1 button");
+let p2RaceButton = document.querySelectorAll("div.selectRaceP2 button");
+let p2ItemButton = document.querySelectorAll("div.selectItemsP2 button");
 
 // These are used as parameters to create out object
-let p1RaceParameter
-let p1ItemParameter
-let p2RaceParameter
-let p2ItemParameter
+let p1RaceParameter;
+let p1ItemParameter;
+let p2RaceParameter;
+let p2ItemParameter;
 
-let player1 = new Person(p1RaceParameter, p1ItemParameter)
-let player2 = new Person(p2RaceParameter, p2ItemParameter)
+let player1 = new Person("player 1", p1RaceParameter, p1ItemParameter);
+let player2 = new Person("player 2", p2RaceParameter, p2ItemParameter);
+
 
 // Gets the innerHTML value of the button and stores that in a variable so we can use that variable to create our object (player1, player2)
 for (let i = 0; i < p1RaceButton.length; i++) {
@@ -22,7 +24,6 @@ for (let i = 0; i < p1RaceButton.length; i++) {
         p1RaceButton[i].className = "activebutton";
         player1.race = p1RaceParameter
         console.log(p1RaceParameter)
-        p1ApplyRaceBonus()
     });
 }
 
@@ -53,25 +54,27 @@ for (let i = 0; i < p2ItemButton.length; i++) {
     });
 }
 
-document.getElementById("selectP1").addEventListener("click", function(){
+// Checks for current items and race and stores bonuses the bonuses in the object
+document.getElementById("selectP1").addEventListener("click", function () {
     p1ApplyRaceBonus();
     p1ApplyItemBonus();
-});
+})
 
-document.getElementById("selectP2").addEventListener("click", function(){
+document.getElementById("selectP2").addEventListener("click", function () {
     p2ApplyRaceBonus();
-    p2ApplyRaceBonus();
-});
+    p2ApplyItemBonus();
+})
 
-
-document.getElementById("objecttest").addEventListener("click", function(){
+// FOR TESTING PURPOSES DELETE ME WHEN FINISHED
+document.getElementById("objecttest").addEventListener("click", function () {
     console.log(player1)
     console.log(player2)
 })
 
+// If statements to check for race and items to apply bonuses
 function p1ApplyRaceBonus() {
     if (player1.race === "human") {
-        player1.classBonusHuman = 0.2 //20% less dmg taken
+        player1.classBonusHuman = 1.2 //20% less dmg taken
         console.log(player1.race)
     } else if (player1.race === "orc") {
         player1.currentHealth = 140 //40% more hp
@@ -87,18 +90,17 @@ function p1ApplyItemBonus() {
     if (player1.item === "boots") {
         player1.itemBonusBoots = 0.3 // 30% dodge chance
     } else if (player1.item === "staff") {
-        player1.itemBonusStaff = 0.2 // 20% more healing
+        player1.itemBonusStaff = 1.2 // 20% more healing
     } else if (player1.item = "sword") {
-        player1.itemBonusSword = 0.3 // 30% more dmg
+        player1.itemBonusSword = 1.3 // 30% more dmg
     } else if (player1.item === "bow") {
         player1.itemBonusBow = "0.3" // 30% chance to double attack
     } else {}
 }
 
-
 function p2ApplyRaceBonus() {
     if (player2.race === "human") {
-        player2.classBonusHuman = 0.2
+        player2.classBonusHuman = 1.2
     } else if (player2.race === "orc") {
         player2.currentHealth = 140
         player2.maxHealth = 140
@@ -121,21 +123,81 @@ function p2ApplyItemBonus() {
     } else {}
 }
 
-// attack 
-// p1AttackButton.addEventListener("click", attackOfPlayer1)
 
-// function attackOfPlayer1() {
-//     console.log("click")
-//     player2.currentHealth -= Math.floor(Math.random() * player1.maxDamage) + player1.min
-//     console.log(player2.currentHealth)
+// ||-------Move list-------||
+// Attack
+document.getElementById("attackP1").addEventListener("click", attackOfPlayer1)
 
-// }
+function attackOfPlayer1() {
+
+    if (player1.item === "sword") {
+        player1.totalDamage = Math.floor(player1.damage() * player1.itemBonusSword)
+    } else if (player1.item === "bow") {
+        player1.totalDamage = player1.damage() + player1.damage()
+    } else {
+        player1.totalDamage = player1.damage();
+    }
+
+    player2.currentHealth -= player1.totalDamage;
+    healthBars();
+
+}
+
+document.getElementById("healP1").addEventListener("click", healOfPlayer1)
+
+function healOfPlayer1() {
+    player1.currentHealth += player1.heal();
+    healthBars();
+}
+
+document.getElementById("attackP2").addEventListener("click", attackOfPlayer2)
+
+function attackOfPlayer2() {
+    player1.currentHealth -= player2.damage();
+    healthBars();
+}
+
+document.getElementById("healP2").addEventListener("click", healOfPlayer2)
+
+function healOfPlayer2() {
+    player2.currentHealth += player2.damage();
+    healthBars();
+}
+
+function healthBars() {
+    document.getElementById("healthNumber1").innerHTML = player1.currentHealth + "/" + player1.maxHealth;
+
+    document.getElementById("health1").value = player1.currentHealth;
+
+    document.getElementById("health1").max = player1.maxHealth;
+
+    document.getElementById("healthNumber2").innerHTML = player2.currentHealth + "/" + player2.maxHealth;
+
+    document.getElementById("health2").value = player2.currentHealth;
+
+    document.getElementById("health2").max = player2.maxHealth;
+}
 
 
+document.getElementById("HumanP1").addEventListener("click", healthBars)
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ||-------Start the battle-------||
 document.getElementById("ready").addEventListener("click", removeStartscreen)
 
 function hidebattlescreen() {
-    document.getElementById("battlescreen").style.visibility = "hidden";
+    document.getElementById("battlescreen").style.display = "none";
 }
 
 hidebattlescreen()
@@ -143,27 +205,14 @@ hidebattlescreen()
 function removeStartscreen() {
     var element = document.getElementById("startscreen");
     element.remove("startscreen");
-    document.getElementById("battlescreen").style.visibility = "visible";
+    document.getElementById("battlescreen").style.display = "block";
+    healthBars()
 }
 
 
-document.getElementById("healthNumber1").innerHTML = player1.currentHealth + "/" + player1.maxHealth;
 
 
-document.getElementById("healthNumber2").innerHTML = player2.currentHealth + "/" + player2.maxHealth;
-
-
-
-
-document.getElementById("health1").value = player1.currentHealth
-
-document.getElementById("health2").value = player2.currentHealth;
-
-document.getElementById("health1").max = player1.maxHealth;
-
-document.getElementById("health2").max = player2.maxHealth;
-
-    
+// Log
 // // function moveLog(race,damage,maxHealth){
 //     // for (y = 0; y < 3; y++) {
 // // document.getElementById("log").innerHTML = `${race} dealed ${damage} damage`;
