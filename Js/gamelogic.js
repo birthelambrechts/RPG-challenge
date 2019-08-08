@@ -2,7 +2,7 @@ import Person from "./character.js";
 
 // ||-------Player creation-------||
 // Create nodelists for race and item buttons
-let p1RaceButton = document.querySelectorAll("div.selectRaceP1 button");
+let p1RaceButton = document.querySelectorAll("div.selectRaceP1 button"); 
 let p1ItemButton = document.querySelectorAll("div.selectItemsP1 button");
 let p2RaceButton = document.querySelectorAll("div.selectRaceP2 button");
 let p2ItemButton = document.querySelectorAll("div.selectItemsP2 button");
@@ -54,21 +54,11 @@ for (let i = 0; i < p2ItemButton.length; i++) {
     });
 }
 
-// Checks for current items and race and stores bonuses the bonuses in the object
-document.getElementById("selectP1").addEventListener("click", function () {
-    p1ApplyRaceBonus();
-    p1ApplyItemBonus();
-})
-
-document.getElementById("selectP2").addEventListener("click", function () {
-    p2ApplyRaceBonus();
-    p2ApplyItemBonus();
-})
-
 // FOR TESTING PURPOSES DELETE ME WHEN FINISHED
 document.getElementById("objecttest").addEventListener("click", function () {
     console.log(player1)
     console.log(player2)
+    doubleAttack()
 })
 
 // If statements to check for race and items to apply bonuses
@@ -129,19 +119,24 @@ function p2ApplyItemBonus() {
 document.getElementById("attackP1").addEventListener("click", attackOfPlayer1)
 
 function attackOfPlayer1() {
-
+    let doubleAttack;
     if (player1.item === "sword") {
         player1.totalDamage = Math.floor(player1.damage() * player1.itemBonusSword)
     } else if (player1.item === "bow") {
-        player1.totalDamage = player1.damage() + player1.damage()
+        if (Math.random() <= 1) { //
+            doubleAttack = player1.damage();
+        } else {
+            doubleAttack = 0 
+        } 
+        player1.totalDamage = player1.damage() + doubleAttack        
     } else {
         player1.totalDamage = player1.damage();
     }
-
     player2.currentHealth -= player1.totalDamage;
     healthBars();
-
+    console.log(player1.totalDamage)
 }
+
 
 document.getElementById("healP1").addEventListener("click", healOfPlayer1)
 
@@ -183,18 +178,39 @@ document.getElementById("HumanP1").addEventListener("click", healthBars)
 
 
 
+let attackButtonP1 = document.getElementById("attackP1");
+let healButtonP1 = document.getElementById("healP1");
+let yieldButtonP1 = document.getElementById("yieldP1");
+let attackButtonP2 = document.getElementById("attackP2");
+let healButtonP2 = document.getElementById("healP2");
+let yieldButtonP2 = document.getElementById("yieldP2")
+
+
+let turnP1 = true;
+let turnP2 = false;
 
 
 
-
-
-
+// function disableButtonTurnP1() {
+//     if (turnP1 = true)
+//     // healButtonP1.disabled = true;
+//     // yieldButtonP1.disabled = true;
+//     // attackButtonP2.disabled = true;
+//     // healButtonP2.disabled = true;
+//     // yieldButtonP2.disabled = true;
+// }
 
 
 
 
 // ||-------Start the battle-------||
-document.getElementById("ready").addEventListener("click", removeStartscreen)
+document.getElementById("ready").addEventListener("click", function(){
+    p1ApplyRaceBonus();
+    p1ApplyItemBonus();
+    p2ApplyRaceBonus();
+    p2ApplyItemBonus();
+    removeStartscreen();
+})
 
 function hidebattlescreen() {
     document.getElementById("battlescreen").style.display = "none";
@@ -224,3 +240,102 @@ function myFunction() {
     document.getElementById("nameP1").innerHTML = `${playerName}`;
     console.log(x)
 }
+
+document.getElementById("HumanP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgHuman;
+    document.getElementById("avatarP1").src = player1.imgHuman;
+    document.getElementById('raceExplP1').innerHTML = "20% less damage taken";
+});
+
+    document.getElementById("OrcP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgOrc;
+    document.getElementById("avatarP1").src = player1.imgOrc;
+    document.getElementById('raceExplP1').innerHTML = "40% more max health";
+});
+
+    document.getElementById("ElfP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgElf;
+    document.getElementById("avatarP1").src = player1.imgElf;
+    document.getElementById('raceExplP1').innerHTML = "30% chance to reflect, 50% of the original hit.";
+});
+
+    document.getElementById("VampireP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgVampire;
+    document.getElementById("avatarP1").src = player1.imgVampire;
+    document.getElementById('raceExplP1').innerHTML = "10% lifesteal at start of the vampire's turn.";
+});
+
+
+    document.getElementById("BootsP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgBoots;
+    document.getElementById("ItemLogoP1").src = player1.imgBoots;
+    document.getElementById('itemExplP1').innerHTML = "30% chance to dodge an attack"
+});
+
+    document.getElementById("StaffP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgStaff;
+    document.getElementById("ItemLogoP1").src = player1.imgStaff;
+    document.getElementById('itemExplP1').innerHTML = "20% increase in healing"
+});
+
+    document.getElementById("SwordP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgSword;
+    document.getElementById("ItemLogoP1").src = player1.imgSword;
+    document.getElementById('itemExplP1').innerHTML = "30% more damage"
+});
+
+    document.getElementById("BowP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgBow;
+    document.getElementById("ItemLogoP1").src = player1.imgBow;
+    document.getElementById('itemExplP1').innerHTML = "30% chance to attack twice"
+});
+
+
+    document.getElementById("HumanP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgHuman;
+    document.getElementById("avatarP2").src = player2.imgHuman;
+    document.getElementById('raceExplP2').innerHTML = "20% less damage taken";
+});
+
+    document.getElementById("OrcP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgOrc;
+    document.getElementById("avatarP2").src = player2.imgOrc;
+    document.getElementById('raceExplP2').innerHTML = "40% more max health";
+});
+
+    document.getElementById("ElfP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgElf;
+    document.getElementById("avatarP2").src = player2.imgElf;
+    document.getElementById('raceExplP2').innerHTML = "30% chance to reflect, 50% of the original hit.";
+});
+
+    document.getElementById("VampireP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgVampire;
+    document.getElementById("avatarP2").src = player2.imgVampire;
+    document.getElementById('raceExplP2').innerHTML = "10% lifesteal at start of the vampire's turn.";
+});
+
+
+    document.getElementById("BootsP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgBoots;
+    document.getElementById("ItemLogoP2").src = player2.imgBoots;
+    document.getElementById('itemExplP2').innerHTML = "30% chance to dodge an attack"
+});
+
+    document.getElementById("StaffP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgStaff;
+    document.getElementById("ItemLogoP2").src = player2.imgStaff;
+    document.getElementById('itemExplP2').innerHTML = "20% increase in healing"
+});
+
+    document.getElementById("SwordP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgSword;
+    document.getElementById("ItemLogoP2").src = player2.imgSword;
+    document.getElementById('itemExplP2').innerHTML = "30% more damage"
+});
+
+    document.getElementById("BowP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgBow;
+    document.getElementById("ItemLogoP2").src = player2.imgBow;
+    document.getElementById('itemExplP2').innerHTML = "30% chance to attack twice"
+});
