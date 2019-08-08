@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='./scss/style.css' />
     <script src="./Js/gamelogic.js" type="module" defer></script>
+    <!-- <script src="./Js/layout.js" type="module" defer></script> -->
     <title>RPG</title>
 </head>
 
@@ -20,17 +21,17 @@
         </div>
         <div class="selectRaceP1">
             <div class="raceP1">Select your race</div>
-            <button id="buttons" class="HumanP1" value="Human" ><img src="elf.png" alt="">Human</button>
-            <button id="buttons" class="OrcP1" value="Orc">Orc</button><br>
-            <button id="buttons" class="ElfP1" value="Elf">Elf</button>
-            <button id="buttons" class="VampireP1" value="Vampire">Vampire</button>
+            <button id="buttons" class="HumanP1">human</button>
+            <button id="buttons" class="OrcP1">orc</button><br>
+            <button id="buttons" class="ElfP1">elf</button>
+            <button id="buttons" class="VampireP1">vampire</button>
         </div>
         <div class="selectItemsP1">
             <div class="ItemP1">Select your item</div>
-            <button id="buttons" class="BootsP1" value="Boots">Boots</button>
-            <button id="buttons" class="StaffP1" value="Staff">Staff</button><br>
-            <button id="buttons" class="SwordP1" value="Sword">Sword</button>
-            <button id="buttons" class="BowP1" value="Bow">Bow</button>
+            <button id="buttons" class="BootsP1" value="Boots">boots</button>
+            <button id="buttons" class="StaffP1" value="Staff">staff</button><br>
+            <button id="buttons" class="SwordP1" value="Sword">sword</button>
+            <button id="buttons" class="BowP1" value="Bow">bow</button>
         </div>
 
     </div>
@@ -47,23 +48,29 @@
         </div>
         <div class="selectRaceP2">
             <div class="raceP2">Select your race</div>
-            <button id="buttons" class="HumanP2">Human</button>
-            <button id="buttons" class="OrcP2">Orc</button><br>
-            <button id="buttons" class="ElfP2">Elf</button>
-            <button id="buttons" class="VampireP2">Vampire</button>
+            <button id="buttons" class="HumanP2">human</button>
+            <button id="buttons" class="OrcP2">orc</button><br>
+            <button id="buttons" class="ElfP2">elf</button>
+            <button id="buttons" class="VampireP2">vampire</button>
         </div>
 
 
         <div class="selectItemsP2">
             <div class="ItemP2">Select your item</div>
-            <button id="buttons" class="BootsP2">Boots</button>
-            <button id="buttons" class="StaffP2">Staff</button><br>
-            <button id="buttons" class="SwordP2">Sword</button>
-            <button id="buttons" class="BowP2">Bow</button>
+            <button id="buttons" class="BootsP2">boots</button>
+            <button id="buttons" class="StaffP2">staff</button><br>
+            <button id="buttons" class="SwordP2">sword</button>
+            <button id="buttons" class="BowP2">bow</button>
 
         </div>
 
-        <div class="ready"><button class="ready" id="ready" onclick="removeStartscreen()">Ready?</button></div>
+        <div class="ready">
+            <button id="selectP1">Select player 1</button>
+            <div class="ready"><button class="ready" id="ready">Ready?</button></div>
+            <button id="selectP2">Select player 2</button>
+            <button id="objecttest">console log</button>
+
+        </div>
 
     </div>
 
@@ -73,118 +80,69 @@
 <!--battlescreen-->
 
 <div class="battlescreen" id="battlescreen">
-        <div class="container" >
-    <div class="heading">
-        <div class="infoP1">
-            <div class="nameP1" id="nameP1">
-               
+    <div class="container">
+        <div class="heading">
+            <div class="infoP1">
+                <div class="nameP1" id="nameP1">
 
+
+                </div>
+
+                <div class="healthbarP1">
+                    <progress id="health1"></progress>
+                    <div class="healthNumber1" id="healthNumber1"></div>
+                </div>
             </div>
 
-            <div class="healthbarP1">
-                <progress id="health1"  ></progress>
-                <div class="healthNumber1" id="healthNumber1"></div>
+            <div class="log" id="log">
+            </div>
+
+            <div class="infoP2">
+                <div class="nameP2" id="nameP2">
+
+                </div>
+
+                <div class="healthbarP2"> <progress id="health2"></progress>
+                    <div class="healthNumber2" id="healthNumber2"></div>
+                </div>
             </div>
         </div>
 
-        <div class="log" id="log"> 
+
+
+        <div class="playerAvatars">
+            <div class="avatarP1"></div>
+            <div class="avatarP2"></div>
         </div>
 
-        <div class="infoP2">
-            <div class="nameP2" id="nameP2">
-               
+
+
+        <div class="actions">
+            <div class="movelistP1">
+                <h4>Movelist</h4>
+                <button class="attackP1">Attack</button>
+                <button class="healP1">Heal</button>
+                <button class="yieldP1">Yield</button>
             </div>
-
-            <div class="healthbarP2"> <progress id="health2" ></progress>
-                <div class="healthNumber2" id="healthNumber2"></div>
+            <div class="movelistP2">
+                <h4>Movelist</h4>
+                <button class="attackP2">Attack</button>
+                <button class="healP2">Heal</button>
+                <button class="yieldP2">Yield</button>
             </div>
         </div>
-    </div>
-
-
-
-    <div class="playerAvatars">
-        <div class="avatarP1"></div>
-        <div class="avatarP2"></div>
-    </div>
-
-
-
-    <div class="actions">
-        <div class="movelistP1">
-            <h4>Movelist</h4>
-            <button class="attackP1">Attack</button>
-            <button class="healP1">Heal</button>
-            <button class="yieldP1">Yield</button>
-        </div>
-        <div class="movelistP2">
-            <h4>Movelist</h4>
-            <button class="attackP2">Attack</button>
-            <button class="healP2">Heal</button>
-            <button class="yieldP2">Yield</button>
-        </div>
-
     </div>
 </div>
 
-
-</body>
 <script>
 
-let currenthealth = 50;
-let maxHealth = 100;
-    
-    function hidebattlescreen() {
-        document.getElementById("battlescreen").style.visibility = "hidden";
-    }
-
-    hidebattlescreen()
-
-    function removeStartscreen() {
-        var element = document.getElementById("startscreen");
-        element.remove("startscreen");
-        document.getElementById("battlescreen").style.visibility = "visible";
-    }
 
 
-    function healthbar() {
-        document.getElementById("healthNumber1").innerHTML = currenthealth + "/" + maxHealth;
-    }
-
-    function healthbar2() {
-        document.getElementById("healthNumber2").innerHTML = currenthealth + "/" + maxHealth;
-    }
-
-
-
-    document.getElementById("health1").value = currenthealth;
-    
-    document.getElementById("health2").value = currenthealth;
-
-    document.getElementById("health1").max = maxHealth;
-    
-    document.getElementById("health2").max = maxHealth;
-
-
-function moveLog(race,damage,maxHealth){
-    for (y = 0; y < 3; y++) {
-document.getElementById("log").innerHTML = `${race} dealed ${damage} damage`;
-}
-}
-moveLog()
-
-function myFunction() {
-    console.log("do myFunction")
-  document.getElementById("nameP1").innerHTML = `${playerName}`;
-  console.log(x)
-}
-
-
-
-document.getElementById("ready").addEventListener("click", setVariables)
 
 
 
 </script>
+
+</body>
 
 </html>

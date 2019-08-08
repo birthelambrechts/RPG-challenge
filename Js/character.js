@@ -8,9 +8,9 @@ export default function Person(race, item) {
     this.maxDamage = 20;
     this.maxHealing = 30;
 
-    this.heal = function() {Math.floor(Math.random() * this.maxHealing) + this.min}
+    this.heal = function() {return Math.floor(Math.random() * this.maxHealing) + this.min}
 
-    this.damage = Math.floor(Math.random() * this.maxDamage) + this.min
+    this.damage = function () {return Math.floor(Math.random() * this.maxDamage) + this.min}
 
     this.totalDamage = this.damage // + race modifiers;
 
@@ -27,6 +27,12 @@ export default function Person(race, item) {
 
     // displayChar(this.race,this.item,this.maxHealth);
 }
+
+
+
+
+
+
 
 
 
