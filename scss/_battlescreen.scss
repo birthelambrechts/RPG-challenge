@@ -1,8 +1,6 @@
-.container{
- 
-    width: 1296px;
-    height: 669px;
-    background-image: url("bg1.jpg");
+body{
+    
+    background-image: url("bg.png");
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -22,20 +20,13 @@
     justify-content: space-between; 
 }
 
-.infoP1{
-    display:flex;
-    flex-direction: column; 
-}
 
 .log{
     display:flex;
     flex-direction: column;
 }
 
-.infoP2{
-    display:flex;
-    flex-direction: column;
-}
+
 
 .playerAvatars, .actions{
     display: flex;
@@ -44,14 +35,12 @@
 }
 
 .avatarP1{
-    background-color: black;
     margin-top: 17%;
     width: 200px;
     height: 200px;
 }
 
 .avatarP2{
-   background-color: black;
     margin-top: 17%;
     width: 200px;
     height: 200px;
@@ -64,3 +53,23 @@
 }
 
 
+#ItemLogoP1{
+    width: 40px;
+    height: 40px;
+}
+
+#ItemLogoP2{
+    width: 40px;
+    height: 40px;
+}
+
+.movelistP1{
+    padding:5px;
+    margin: 15px 3px 3px 3px;
+    background-color: rgba(83, 80, 80, 0.233);
+    button{
+        font-size: 20px;
+        width: 80px;
+    height: 40px;
+    }
+}

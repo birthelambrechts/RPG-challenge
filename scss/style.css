@@ -6,7 +6,6 @@
 }
 
 .startscreen {
-  margin-top: 5%;
   font-size: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,21 +25,16 @@
   width: 80px;
   height: 80px;
   background-color: rgba(133, 133, 133, 0.747);
+  margin-top: 8px;
 }
 
-.startscreen .activebutton {
+.startscreen .activebutton:focus {
   background-color: pink;
 }
 
-.startP1,
-.startP2 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
+img {
+  width: 200px;
+  height: 200px;
 }
 
 .selectRaceP1,
@@ -49,7 +43,7 @@
 .selectItemsP2 {
   margin: 10px;
   height: 200px;
-  width: 200px;
+  width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,24 +53,72 @@
           flex-flow: column wrap;
 }
 
-.submitP1,
-.submitP2 {
-  width: 100%;
+.InputNameP1 {
+  width: 90%;
+  font-size: 20px;
 }
 
-.ready {
-  margin-left: -50%;
+.InputNameP2 {
+  width: 90%;
+  font-size: 20px;
 }
 
 .versus {
-  margin-top: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 20px;
+  background-color: #d8b1c881;
 }
 
-.container {
-  width: 1296px;
-  height: 669px;
-  background-image: url("bg1.jpg");
+.imageRaceP1 {
+  width: 200px;
+  height: 200px;
+}
+
+.imageRaceP2 {
+  width: 200px;
+  height: 200px;
+}
+
+.imageItemP1 {
+  width: 200px;
+  height: 200px;
+}
+
+.imageItemP2 {
+  width: 200px;
+  height: 200px;
+}
+
+.ready {
+  margin-left: -49%;
+}
+
+.buttonP1 button {
+  width: 100%;
+  height: 50PX;
+}
+
+.buttonP2 button {
+  width: 100%;
+  height: 50PX;
+}
+
+.itemExplP1, .raceExplP1, .itemExplP2, .raceExplP2 {
+  width: 100%;
+  height: 30px;
+}
+
+.startP1, .startP2 {
+  background-color: #d8b1c881;
+}
+
+body {
+  background-image: url("bg.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -106,27 +148,7 @@
           justify-content: space-between;
 }
 
-.infoP1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
 .log {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.infoP2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -149,14 +171,12 @@
 }
 
 .avatarP1 {
-  background-color: black;
   margin-top: 17%;
   width: 200px;
   height: 200px;
 }
 
 .avatarP2 {
-  background-color: black;
   margin-top: 17%;
   width: 200px;
   height: 200px;
@@ -166,5 +186,27 @@
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
+}
+
+#ItemLogoP1 {
+  width: 40px;
+  height: 40px;
+}
+
+#ItemLogoP2 {
+  width: 40px;
+  height: 40px;
+}
+
+.movelistP1 {
+  padding: 5px;
+  margin: 15px 3px 3px 3px;
+  background-color: rgba(83, 80, 80, 0.233);
+}
+
+.movelistP1 button {
+  font-size: 20px;
+  width: 80px;
+  height: 40px;
 }
 /*# sourceMappingURL=style.css.map */

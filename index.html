@@ -17,23 +17,34 @@
 <div class="startscreen" id="startscreen"><br>
     <div class="startP1" id="startP1">
         <div class="selectNameP1">
-            <input type="text" name="InputNameP1" id="InputNameP1" placeholder="Enter your name"><br>
+            <input type="text" name="InputNameP1" id="InputNameP1" class="InputNameP1"
+                placeholder="Enter your name"><br>
         </div>
-        <div class="selectRaceP1">
+        <div class="flexbox">
             <div class="raceP1">Select your race</div>
-            <button id="HumanP1" class="HumanP1">human</button>
-            <button id="buttons" class="OrcP1">orc</button><br>
-            <button id="buttons" class="ElfP1">elf</button>
-            <button id="buttons" class="VampireP1">vampire</button>
+            <div class="selectRaceP1">
+                <button id="HumanP1" class="HumanP1">human</button>
+                <button id="OrcP1" class="OrcP1">orc</button>
+                <button id="ElfP1" class="ElfP1">elf</button>
+                <button id="VampireP1" class="VampireP1">vampire</button>
+                <div class="imageRaceP1"><img src="./images/q.png" id="imageP1" alt="imageP1"></div>
+            </div>
+            <div class="raceExplP1" id="raceExplP1"></div>
         </div>
-        <div class="selectItemsP1">
+        <div class="flexbox">
             <div class="ItemP1">Select your item</div>
-            <button id="buttons" class="BootsP1" value="Boots">boots</button>
-            <button id="buttons" class="StaffP1" value="Staff">staff</button><br>
-            <button id="buttons" class="SwordP1" value="Sword">sword</button>
-            <button id="buttons" class="BowP1" value="Bow">bow</button>
+            <div class="selectItemsP1">
+                <button id="BootsP1" class="BootsP1" value="Boots">boots</button>
+                <button id="StaffP1" class="StaffP1" value="Staff">staff</button>
+                <button id="SwordP1" class="SwordP1" value="Sword">sword</button>
+                <button id="BowP1" class="BowP1" value="Bow">bow</button>
+                <div class="imageItemP1"><img src="./images/q.png" id="imageItemP1" alt="imageItemP1"></div>
+            </div>
+            <div class="itemExplP1" id="itemExplP1"></div>
         </div>
-
+        <div class="buttonP1">
+            <button id="selectP1" class="selectP1">Select player 1</button>
+        </div>
     </div>
 
 
@@ -44,97 +55,217 @@
 
     <div class="startP2" id="startP2">
         <div class="selectNameP2">
-            <input type="text" name="InputNameP2" id="InputNameP2" placeholder="Enter your name"><br>
+            <input type="text" name="InputNameP2" id="InputNameP2" class="InputNameP2"
+                placeholder="Enter your name"><br>
         </div>
-        <div class="selectRaceP2">
+
+        <div class="flexbox">
             <div class="raceP2">Select your race</div>
-            <button id="buttons" class="HumanP2">human</button>
-            <button id="buttons" class="OrcP2">orc</button><br>
-            <button id="buttons" class="ElfP2">elf</button>
-            <button id="buttons" class="VampireP2">vampire</button>
+            <div class="selectRaceP2">
+                <div class="imageRaceP2">
+                    <img src="./images/q.png" id="imageP2" alt="imageP2">
+                </div>
+                <button id="HumanP2" class="HumanP2">human</button>
+                <button id="OrcP2" class="OrcP2">orc</button>
+                <button id="ElfP2" class="ElfP2">elf</button>
+                <button id="VampireP2" class="VampireP2">vampire</button>
+            </div>
+            <div class="raceExplP2" id="raceExplP2"></div>
         </div>
 
-
-        <div class="selectItemsP2">
+        <div class="flexbox">
             <div class="ItemP2">Select your item</div>
-            <button id="buttons" class="BootsP2">boots</button>
-            <button id="buttons" class="StaffP2">staff</button><br>
-            <button id="buttons" class="SwordP2">sword</button>
-            <button id="buttons" class="BowP2">bow</button>
-
+            <div class="selectItemsP2">
+                <div class="imageItemP2"><img src="./images/q.png" id="imageItemP2" alt="imageItemP2"></div>
+                <button id="BootsP2" class="BootsP2">boots</button>
+                <button id="StaffP2" class="StaffP2">staff</button>
+                <button id="SwordP2" class="SwordP2">sword</button>
+                <button id="BowP2" class="BowP2">bow</button>
+            </div>
+            <div class="itemExplP2" id="itemExplP2"></div>
+            <div class="buttonP2">
+                <button id="selectP2" class="selectP2">Select player 2</button>
+            </div>
         </div>
+        <div class="ready"><button class="ready" id="ready">Ready?</button></div>
 
-        <div class="ready">
-            <button id="selectP1">Select player 1</button>
-            <div class="ready"><button class="ready" id="ready">Ready?</button></div>
-            <button id="selectP2">Select player 2</button>
-            <button id="objecttest">console log</button>
 
-        </div>
 
     </div>
+    <button id="objecttest">console log</button>
+</div>
 
-</div>
-</div>
 
 <!--battlescreen-->
 
 <div class="battlescreen" id="battlescreen">
     <div class="container">
         <div class="heading">
-            <div class="infoP1">
-                <div class="nameP1" id="nameP1">
 
-
-                </div>
+            <div class="infoP1frame">
+                <div class="infoP1">Player 1
+                    <img src="" id="ItemLogoP1"></div>
 
                 <div class="healthbarP1">
                     <progress id="health1"></progress>
                     <div class="healthNumber1" id="healthNumber1"></div>
                 </div>
+                <div class="movelistP1">
+                        <h4>Movelist</h4>
+                        <button class="attackP1" id="attackP1">Attack</button>
+                        <button class="healP1" id="healP1">Heal</button>
+                        <button class="yieldP1">Yield</button>
+                    </div>
             </div>
+            
+
+
+
 
             <div class="log" id="log">
             </div>
 
-            <div class="infoP2">
-                <div class="nameP2" id="nameP2">
 
-                </div>
+
+            <div class="infoP2frame">
+                <div class="infoP2">Player 2
+                    <img src="" id="ItemLogoP2"></div>
 
                 <div class="healthbarP2"> <progress id="health2"></progress>
                     <div class="healthNumber2" id="healthNumber2"></div>
                 </div>
+                <div class="movelistP2">
+                        <h4>Movelist</h4>
+                        <button class="attackP2" id="attackP2">Attack</button>
+                        <button class="healP2" id="healP2">Heal</button>
+                        <button class="yieldP2">Yield</button>
+                    </div>
             </div>
+            
         </div>
 
 
 
         <div class="playerAvatars">
-            <div class="avatarP1"></div>
-            <div class="avatarP2"></div>
+            <div class="avatarP1">
+                <img src="" id="avatarP1" alt="avatarP1">
+            </div>
+            <div class="avatarP2">
+                <img src="" id="avatarP2" alt="avatarP1">
+            </div>
         </div>
 
 
 
-        <div class="actions">
-            <div class="movelistP1">
-                <h4>Movelist</h4>
-                <button class="attackP1" id="attackP1">Attack</button>
-                <button class="healP1" id="healP1">Heal</button>
-                <button class="yieldP1">Yield</button>
-            </div>
-            <div class="movelistP2">
-                <h4>Movelist</h4>
-                <button class="attackP2" id="attackP2" >Attack</button>
-                <button class="healP2" id="healP2">Heal</button>
-                <button class="yieldP2">Yield</button>
-            </div>
+        
+            
         </div>
     </div>
 </div>
 
+
+
+
 <script>
+document.getElementById("HumanP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgHuman;
+    document.getElementById("avatarP1").src = player1.imgHuman;
+    document.getElementById('raceExplP1').innerHTML = "20% less damage taken";
+});
+
+    document.getElementById("OrcP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgOrc;
+    document.getElementById("avatarP1").src = player1.imgOrc;
+    document.getElementById('raceExplP1').innerHTML = "40% more max health";
+});
+
+    document.getElementById("ElfP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgElf;
+    document.getElementById("avatarP1").src = player1.imgElf;
+    document.getElementById('raceExplP1').innerHTML = "30% chance to reflect, 50% of the original hit.";
+});
+
+    document.getElementById("VampireP1").addEventListener("click", function(){
+    document.getElementById("imageP1").src = player1.imgVampire;
+    document.getElementById("avatarP1").src = player1.imgVampire;
+    document.getElementById('raceExplP1').innerHTML = "10% lifesteal at start of the vampire's turn.";
+});
+
+
+    document.getElementById("BootsP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgBoots;
+    document.getElementById("ItemLogoP1").src = player1.imgBoots;
+    document.getElementById('itemExplP1').innerHTML = "30% chance to dodge an attack"
+});
+
+    document.getElementById("StaffP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgStaff;
+    document.getElementById("ItemLogoP1").src = player1.imgStaff;
+    document.getElementById('itemExplP1').innerHTML = "20% increase in healing"
+});
+
+    document.getElementById("SwordP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgSword;
+    document.getElementById("ItemLogoP1").src = player1.imgSword;
+    document.getElementById('itemExplP1').innerHTML = "30% more damage"
+});
+
+    document.getElementById("BowP1").addEventListener("click", function(){
+    document.getElementById("imageItemP1").src = player1.imgBow;
+    document.getElementById("ItemLogoP1").src = player1.imgBow;
+    document.getElementById('itemExplP1').innerHTML = "30% chance to attack twice"
+});
+
+
+    document.getElementById("HumanP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgHuman;
+    document.getElementById("avatarP2").src = player2.imgHuman;
+    document.getElementById('raceExplP2').innerHTML = "20% less damage taken";
+});
+
+    document.getElementById("OrcP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgOrc;
+    document.getElementById("avatarP2").src = player2.imgOrc;
+    document.getElementById('raceExplP2').innerHTML = "40% more max health";
+});
+
+    document.getElementById("ElfP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgElf;
+    document.getElementById("avatarP2").src = player2.imgElf;
+    document.getElementById('raceExplP2').innerHTML = "30% chance to reflect, 50% of the original hit.";
+});
+
+    document.getElementById("VampireP2").addEventListener("click", function(){
+    document.getElementById("imageP2").src = player2.imgVampire;
+    document.getElementById("avatarP2").src = player2.imgVampire;
+    document.getElementById('raceExplP2').innerHTML = "10% lifesteal at start of the vampire's turn.";
+});
+
+
+    document.getElementById("BootsP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgBoots;
+    document.getElementById("ItemLogoP2").src = player2.imgBoots;
+    document.getElementById('itemExplP2').innerHTML = "30% chance to dodge an attack"
+});
+
+    document.getElementById("StaffP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgStaff;
+    document.getElementById("ItemLogoP2").src = player2.imgStaff;
+    document.getElementById('itemExplP2').innerHTML = "20% increase in healing"
+});
+
+    document.getElementById("SwordP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgSword;
+    document.getElementById("ItemLogoP2").src = player2.imgSword;
+    document.getElementById('itemExplP2').innerHTML = "30% more damage"
+});
+
+    document.getElementById("BowP2").addEventListener("click", function(){
+    document.getElementById("imageItemP2").src = player2.imgBow;
+    document.getElementById("ItemLogoP2").src = player2.imgBow;
+    document.getElementById('itemExplP2').innerHTML = "30% chance to attack twice"
+});
+
 
 
 
@@ -142,6 +273,7 @@
 
 
 </script>
+
 
 </body>
 

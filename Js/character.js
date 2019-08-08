@@ -23,6 +23,16 @@ export default function Person(defaultName, race, item) {
     this.itemBonusStaff = "";
     this.itemBonusSword = "";
     this.itemBonusBow = "";
+
+    this.imgHuman = "./images/Toy.png";
+    this.imgOrc = "./images/lolly.png";
+    this.imgElf = "./images/Toy.png";
+    this.imgVampire = "./images/lolly.png";
+
+    this.imgBoots = "./images/lolly.png";
+    this.imgStaff = "./images/Toy.png";
+    this.imgSword = "./images/lolly.png";
+    this.imgBow = "./images/Toy.png";
 }
 
 
