@@ -1,4 +1,13 @@
 import Person from "./character.js";
+// Variables for race and item stats
+let humanLessDamage = 0.8;
+let elfReflectChance = [0.3, 0.5];
+let vampireLifesteal = 0.1;
+
+let bootsDodgeChance = 0.3;
+let staffMoreHealing = 1.2;
+let swordMoreDamage = 1.2;
+let bowDoubleAttackChance = 0.3;
 
 // Create nodelists for race and item buttons
 let p1RaceButton = document.querySelectorAll("div.selectRaceP1 button");
@@ -7,10 +16,10 @@ let p2RaceButton = document.querySelectorAll("div.selectRaceP2 button");
 let p2ItemButton = document.querySelectorAll("div.selectItemsP2 button");
 
 // Variables for object
-let p1RaceParameter = "";
-let p1ItemParameter = "";
-let p2RaceParameter = "";
-let p2ItemParameter = "";
+let p1RaceParameter;
+let p1ItemParameter;
+let p2RaceParameter;
+let p2ItemParameter;
 
 // Variables for input field
 let inputFieldP1 = document.getElementById("InputNameP1");
@@ -25,6 +34,10 @@ let yieldButtonP1 = document.getElementById("yieldP1");
 let attackButtonP2 = document.getElementById("attackP2");
 let healButtonP2 = document.getElementById("healP2");
 let yieldButtonP2 = document.getElementById("yieldP2")
+
+// Variables for deciding the turns
+let turnP1 = true;
+let turnP2 = false;
 
 
 // ||-------Player creation-------||
@@ -75,26 +88,26 @@ for (let i = 0; i < p2ItemButton.length; i++) {
 // If statements to check for race and items to apply bonuses
 function applyRaceBonus(player) {
     if (player.race === "human") {
-        player.classBonusHuman = 1.2 //20% less dmg taken
+        player.classBonusHuman = humanLessDamage //20% less dmg taken
     } else if (player.race === "orc") {
         player.currentHealth = 140 //40% more hp
         player.maxHealth = 140
     } else if (player.race === "elf") {
-        player.classBonusElf = [0.3, 0.5]; // 30% reflect attack chance up to 50 dmg of hit
+        player.classBonusElf = elfReflectChance; // 30% reflect attack chance up to 50 dmg of hit
     } else if (player.race === "vampire") {
-        player.classBonusVampire = "0.1" // 10% lifesteal
+        player.classBonusVampire = vampireLifesteal // 10% lifesteal
     } else {}
 }
 
 function applyItemBonus(player) {
     if (player.item === "boots") {
-        player.itemBonusBoots = 0.3 // 30% dodge chance
+        player.itemBonusBoots = bootsDodgeChance // 30% dodge chance
     } else if (player.item === "staff") {
-        player.itemBonusStaff = 1.2 // 20% more healing
-    } else if (player.item = "sword") {
-        player.itemBonusSword = 1.3 // 30% more dmg
+        player.itemBonusStaff = staffMoreHealing // 20% more healing
+    } else if (player.item === "sword") {
+        player.itemBonusSword = swordMoreDamage // 30% more dmg
     } else if (player.item === "bow") {
-        player.itemBonusBow = "0.3" // 30% chance to double attack
+        player.itemBonusBow = bowDoubleAttackChance // 30% chance to double attack
     } else {}
 }
 
@@ -104,7 +117,7 @@ document.getElementById("ready").addEventListener("click", function () {
     applyItemBonus(player1);
     applyRaceBonus(player2);
     applyItemBonus(player2);
-    playerCheck();
+    startBattleCheck();
 })
 
 function hidebattlescreen() {
@@ -132,62 +145,86 @@ function removeBattlescreen() {
     document.getElementById("winnerscreen").style.display = "block";
 }
 
-function playerCheck() {
+function startBattleCheck() {
     if (player1.race !== undefined && player1.item !== undefined && player2.race !== undefined && player1.item !== undefined) {
         removeStartscreen();
     } else {
-        document.getElementById("ready").innerHTML = "error"
+        document.getElementById("ready").innerHTML = "Select everything!!!"
     }
 }
 
 // ||-------Move list-------||
 // Attack
 attackButtonP1.addEventListener("click", function () {
-    attackOfPlayer1();
+    attack(player1, player2);
+    turnP1 = false;
+    turnP2 = true;
+    nextTurn();
+    createLogP1()
+})
+
+attackButtonP2.addEventListener("click", function () {
+    attack(player2, player1)
+    turnP2 = false;
+    turnP1 = true;
+    nextTurn();
+    createLogP2()
 })
 
 
-function attackOfPlayer1() {
-    let doubleAttack = 0;
-    if (player1.item === "bow") {
-        if (Math.random() <= 1) { //
-            doubleAttack = player1.damage();
-        } else {
-            doubleAttack = 0
+function attack(your, opponent) {
+    if (your.item === "sword") {
+        console.log("sword");
+        your.totalDamage = Math.floor(your.damage() * your.itemBonusSword)
+    } else if (opponent.item === "boots") {
+        console.log("boots");
+        let dodgeChance;
+        if (Math.random() <= opponent.itemBonusBoots) {
+            console.log("enemy dodged")
+        } else { your.totalDamage = your.damage }
+    } else if (your.item === "bow") {
+        let doubleAttackValue;
+        if (Math.random() <= 1) {
+            doubleAttackValue = your.damage();
+            console.log("double attack");
+        } else { doubleAttackValue = 0 }
+        your.totalDamage = your.damage() + doubleAttackValue
+    } else if (opponent.race === "human") {
+        console.log("take 20% less damage");
+        your.totalDamage = Math.floor(your.damage() * opponent.classBonusHuman)
+    } else if (opponent.race === "elf") {
+        let reflectValue;
+        if (Math.random() <= 1) {
+            reflectValue = Math.floor(your.damage() * opponent.classBonusElf[1])
+            your.currentHealth -= reflectValue
+            console.log("elf reflected your attack")
+        } else if (opponent.race === "vampire") {
+            your.totalDamage = your.damage();
+            opponent.currentHealth += your.currentHealth * opponent.classBonusVampire
+        } 
+        
+        else {
+            your.totalDamage = your.damage()
         }
-        player1.totalDamage = player1.damage() + doubleAttack
-    } else if (player1.item === "sword") {
-        player1.totalDamage = Math.floor(player1.damage() * player1.itemBonusSword)
-    } else {
-        player1.totalDamage = player1.damage();
+    } 
+    else {
+        your.totalDamage = your.damage();
     }
-    player2.currentHealth -= player1.totalDamage;
+    opponent.currentHealth -= your.totalDamage;
     healthBars();
 };
 
 
+healButtonP1.addEventListener("click", function () {
+    heal(player1);
+    healLogP1();
+})
 
-// function attackTest(your, opponent) {
-//     let doubleAttack;
-//     if (your.item === "sword") {
-//         your.totalDamage = Math.floor(your.damage() * your.itemBonusSword)
-//     } else if (your.item === "bow") {
-//         if (Math.random() <= 1) { //
-//             doubleAttack = your.damage();
-//         } else {
-//             doubleAttack = 0
-//         }
-//         your.totalDamage = your.damage() + doubleAttack
-//     } else {
-//         your.totalDamage = your.damage();
-//     }
-//     opponent.currentHealth -= your.totalDamage;
-//     healthBars();
-//     console.log("why does this run first")
-// }
+healButtonP2.addEventListener("click", function () {
+    heal(player2);
+})
 
 
-document.getElementById("attackP1").addEventListener("click", createLogP1);
 
 function createLogP1(){
     let li = document.createElement('li')
@@ -195,8 +232,6 @@ function createLogP1(){
     li.innerHTML = logP1 
     document.getElementById("log").prepend(li)
 }
-
-document.getElementById("attackP2").addEventListener("click", createLogP2);
 
 function createLogP2(){
     let li = document.createElement('li')
@@ -223,25 +258,13 @@ function healLogP2(){
     document.getElementById("log").prepend(li)
 }
 
-
-healButtonP1.addEventListener("click", healOfPlayer1)
-
-function healOfPlayer1() {
-    player1.currentHealth += player1.heal();
-    healthBars();
-}
-
-attackButtonP2.addEventListener("click", attackOfPlayer2)
-
-function attackOfPlayer2() {
-    player1.currentHealth -= player2.damage();
-    healthBars();
-}
-
-healButtonP2.addEventListener("click", healOfPlayer2)
-
-function healOfPlayer2() {
-    player2.currentHealth += player2.damage();
+function heal(your) {
+    if (your.item === "staff") {
+        your.currentHealth += Math.floor(your.heal() * your.itemBonusStaff)
+        console.log("You healed 20% more")
+    } else {
+        your.currentHealth += your.heal();
+    }
     healthBars();
 }
 
@@ -262,41 +285,26 @@ function healthBars() {
     }
 }
 
-
 document.getElementById("HumanP1").addEventListener("click", healthBars)
 
-
-// function nextTurn() {
-//     let turnP1 = true;
-//     let turnP2 = false;
-//     if (turnP1 = true) {
-//         attackButtonP2.disabled = true;
-//         healButtonP2.disabled = true;
-//         // yieldButtonP2.disabled = true;
-//         turnP1 = false;
-//         turnP2 = true
-//     } else if (turnP2 = true) {
-//         attackButtonP1.disabled = true;
-//         healButtonP2.disabled = true;
-//         // yieldButtonP2.disabled = true;
-//         turnP2 = false;
-//         turnP1 = true;
-//     } else {}
-// }
-
+// Disables the opponents buttons when it's your turn (true, false)
+function nextTurn() {
+    if (turnP1 === true) {
+        attackButtonP1.disabled = false;
+        attackButtonP2.disabled = false
+        attackButtonP2.disabled = true;
+        healButtonP2.disabled = true;
+        yieldButtonP2.disabled = true;
+    } else if (turnP2 === true) {
+        attackButtonP2.disabled = false;
+        healButtonP2.disabled = false;
+        attackButtonP1.disabled = true;
+        healButtonP2.disabled = true;
+        yieldButtonP2.disabled = true;
+    } else {}
+}
 
 // ||-------Start the battle-------||
-
-
-
-// Log
-// // function moveLog(race,damage,maxHealth){
-//     // for (y = 0; y < 3; y++) {
-// // document.getElementById("log").innerHTML = `${race} dealed ${damage} damage`;
-// }
-// moveLog()
-
-
 //link images to buttons
 document.getElementById("HumanP1").addEventListener("click", function () {
     document.getElementById("imageP1").src = player1.imgHuman;
