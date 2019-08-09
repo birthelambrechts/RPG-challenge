@@ -24,11 +24,14 @@
   font-size: 20px;
   width: 80px;
   height: 80px;
-  background-color: rgba(133, 133, 133, 0.747);
+  background-color: rgba(133, 133, 133, 0);
   margin-top: 8px;
+  border: solid #a37bac 2px;
+  border-radius: 10px;
+  color: #610337;
 }
 
-.startscreen .activebutton:focus {
+.startscreen .activebutton {
   background-color: pink;
 }
 
@@ -53,14 +56,30 @@ img {
           flex-flow: column wrap;
 }
 
-.InputNameP1 {
+.InputNameP1, .InputNameP2 {
   width: 90%;
   font-size: 20px;
+  background-color: #a37bac00;
+  padding: 5px;
+  margin-top: 15px;
+  border: solid #610337 1px;
+  border-radius: 5px;
 }
 
-.InputNameP2 {
-  width: 90%;
-  font-size: 20px;
+::-webkit-input-placeholder {
+  color: #610337;
+}
+
+:-ms-input-placeholder {
+  color: #610337;
+}
+
+::-ms-input-placeholder {
+  color: #610337;
+}
+
+::placeholder {
+  color: #610337;
 }
 
 .versus {
@@ -98,6 +117,11 @@ img {
   margin-left: -49%;
 }
 
+.ready button {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
 .buttonP1 button {
   width: 100%;
   height: 50PX;
@@ -117,7 +141,25 @@ img {
   background-color: #d8b1c881;
 }
 
+.containerInfo, .containerInfoP2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.infoP1, .infoP2 {
+  font-size: 32px;
+}
+
 body {
+  color: #610337;
   background-image: url("bg.png");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -182,6 +224,20 @@ body {
   height: 200px;
 }
 
+.log {
+  width: 200px;
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: scroll;
+  overflow: hidden;
+}
+
 #health2 {
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -208,5 +264,36 @@ body {
   font-size: 20px;
   width: 80px;
   height: 40px;
+}
+
+.movelistP2 {
+  padding: 5px;
+  margin: 15px 3px 3px 3px;
+  background-color: rgba(83, 80, 80, 0.233);
+}
+
+.movelistP2 button {
+  font-size: 20px;
+  width: 80px;
+  height: 40px;
+}
+
+@font-face {
+  font-family: 'MyWebFont';
+  src: url("Something Strange.ttf");
+}
+
+body {
+  font-size: 100px;
+}
+
+.winnerscreen {
+  margin-top: 20%;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: red;
+  font-family: 'MyWebFont', Fallback, sans-serif;
 }
 /*# sourceMappingURL=style.css.map */

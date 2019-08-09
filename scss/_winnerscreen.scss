@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('Something Strange.ttf');
+}
+
+body{  
+    font-size:100px;
+}
+
+.winnerscreen{
+    margin-top: 20%;
+    text-align: center;
+    justify-content: center;
+    color: red;
+    font-family: 'MyWebFont', Fallback, sans-serif;
+}
+

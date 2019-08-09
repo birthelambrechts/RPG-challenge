@@ -7,16 +7,16 @@ let p2RaceButton = document.querySelectorAll("div.selectRaceP2 button");
 let p2ItemButton = document.querySelectorAll("div.selectItemsP2 button");
 
 // Variables for object
-let p1RaceParameter;
-let p1ItemParameter;
-let p2RaceParameter;
-let p2ItemParameter;
+let p1RaceParameter = "";
+let p1ItemParameter = "";
+let p2RaceParameter = "";
+let p2ItemParameter = "";
 
 // Variables for input field
 let inputFieldP1 = document.getElementById("InputNameP1");
 let inputFieldP2 = document.getElementById("InputNameP2");
-// let inputTextP1 = document.getElementById("nameP1");
-// let inputTextP2 = document.getElementById("nameP1");
+let inputTextP1 = document.getElementById("nameP1");
+let inputTextP2 = document.getElementById("nameP2");
 
 // Variables for battle screen
 let attackButtonP1 = document.getElementById("attackP1");
@@ -113,11 +113,23 @@ function hidebattlescreen() {
 
 hidebattlescreen()
 
+function hidewinnerscreen() {
+    document.getElementById("winnerscreen").style.display = "none";
+}
+
+hidewinnerscreen()
+
 function removeStartscreen() {
     let element = document.getElementById("startscreen");
     element.remove("startscreen");
     document.getElementById("battlescreen").style.display = "block";
     healthBars()
+}
+
+function removeBattlescreen() {
+    let elements = document.getElementById("battlescreen");
+    elements.remove("battlescreen");
+    document.getElementById("winnerscreen").style.display = "block";
 }
 
 function playerCheck() {
@@ -130,7 +142,7 @@ function playerCheck() {
 
 // ||-------Move list-------||
 // Attack
-attackButtonP1.addEventListener("click", function(){
+attackButtonP1.addEventListener("click", function () {
     attackOfPlayer1();
 })
 
@@ -151,12 +163,8 @@ function attackOfPlayer1() {
     }
     player2.currentHealth -= player1.totalDamage;
     healthBars();
-}
+};
 
-// FOR TESTING PURPOSES DELETE ME WHEN FINISHED
-document.getElementById("objecttest").addEventListener("click", function () {
-
-})
 
 
 // function attackTest(your, opponent) {
@@ -179,6 +187,41 @@ document.getElementById("objecttest").addEventListener("click", function () {
 // }
 
 
+document.getElementById("attackP1").addEventListener("click", createLogP1);
+
+function createLogP1(){
+    let li = document.createElement('li')
+    let logP1 = inputFieldP1.value + " dealed " + player1.totalDamage + " damage."
+    li.innerHTML = logP1 
+    document.getElementById("log").prepend(li)
+}
+
+document.getElementById("attackP2").addEventListener("click", createLogP2);
+
+function createLogP2(){
+    let li = document.createElement('li')
+    let logP2 = inputFieldP2.value + " dealed " + player2.totalDamage + " damage."
+    li.innerHTML = logP2 
+    document.getElementById("log").prepend(li)
+}
+
+document.getElementById("healP1").addEventListener("click", healLogP1);
+
+function healLogP1(){
+    let li = document.createElement('li')
+    let heallogP1 = inputFieldP1.value + " healed " + player1.maxDamage + "." 
+    li.innerHTML = heallogP1 
+    document.getElementById("log").prepend(li)
+}
+
+document.getElementById("healP2").addEventListener("click", healLogP2);
+
+function healLogP2(){
+    let li = document.createElement('li')
+    let heallogP2 = inputFieldP2.value + "healed " + player2.maxDamage + "." 
+    li.innerHTML = heallogP2 
+    document.getElementById("log").prepend(li)
+}
 
 
 healButtonP1.addEventListener("click", healOfPlayer1)
@@ -209,6 +252,14 @@ function healthBars() {
     document.getElementById("healthNumber2").innerHTML = player2.currentHealth + "/" + player2.maxHealth;
     document.getElementById("health2").value = player2.currentHealth;
     document.getElementById("health2").max = player2.maxHealth;
+    if (player1.currentHealth < 1) {
+        removeBattlescreen()
+        document.getElementById("winnerscreen").innerHTML = inputFieldP2.value + " wins";
+    }
+    if (player2.currentHealth < 1) {
+        removeBattlescreen()
+        document.getElementById("winnerscreen").innerHTML = inputFieldP1.value + " wins";
+    }
 }
 
 
@@ -245,12 +296,8 @@ document.getElementById("HumanP1").addEventListener("click", healthBars)
 // }
 // moveLog()
 
-function myFunction() {
-    console.log("do myFunction")
-    document.getElementById("nameP1").innerHTML = `${playerName}`;
-    console.log(x)
-}
 
+//link images to buttons
 document.getElementById("HumanP1").addEventListener("click", function () {
     document.getElementById("imageP1").src = player1.imgHuman;
     document.getElementById("avatarP1").src = player1.imgHuman;

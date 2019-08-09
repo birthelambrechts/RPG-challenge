@@ -1,12 +1,11 @@
 body{
-    
+    color:rgb(97, 3, 55);
     background-image: url("bg.png");
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 .battlescreen{
-    
     font-size: 20px;
     display:flex;
     flex-direction: column;
@@ -46,6 +45,19 @@ body{
     height: 200px;
 }
 
+.log{
+    width: 200px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    overflow: hidden;
+}
+
+
+
+
+
 #health2{
     transform:rotate(180deg);
 -ms-transform:rotate(180deg); 
@@ -64,6 +76,16 @@ body{
 }
 
 .movelistP1{
+    padding:5px;
+    margin: 15px 3px 3px 3px;
+    background-color: rgba(83, 80, 80, 0.233);
+    button{
+        font-size: 20px;
+        width: 80px;
+    height: 40px;
+    }
+}
+.movelistP2{
     padding:5px;
     margin: 15px 3px 3px 3px;
     background-color: rgba(83, 80, 80, 0.233);
