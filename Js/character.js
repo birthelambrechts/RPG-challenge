@@ -7,23 +7,23 @@ export default function Person(defaultName, race, item) {
 
     this.min = 3;
     this.maxDamage = 20;
-    this.maxHealing = 30;
+    this.maxHealing = 8;
 
     this.heal = function() {return Math.floor(Math.random() * this.maxHealing) + this.min}
-    this.totalHeal = ""
+    this.totalHeal = 0;
 
     this.damage = function () {return Math.floor(Math.random() * this.maxDamage) + this.min}
 
-    this.totalDamage = "" // + race modifiers;
+    this.totalDamage = 0; // + race modifiers;
 
-    this.classBonusHuman = "";
-    this.classBonusElf = "";
-    this.classBonusVampire = "";
+    this.classBonusHuman = 0;
+    this.classBonusElf = 0;
+    this.classBonusVampire = 0;
 
-    this.itemBonusBoots = "";
-    this.itemBonusStaff = "";
-    this.itemBonusSword = "";
-    this.itemBonusBow = "";
+    this.itemBonusBoots = 0;
+    this.itemBonusStaff = 0;
+    this.itemBonusSword = 0;
+    this.itemBonusBow = 0;
 
     this.imgHuman = "./images/human.png";
     this.imgOrc = "./images/orc.png";
