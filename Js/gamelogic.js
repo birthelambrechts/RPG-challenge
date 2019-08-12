@@ -176,6 +176,7 @@ attackButtonP1.addEventListener("click", function () {
     turnP1 = false;
     turnP2 = true;
     nextTurn();
+    showbloodP1()
 })
 
 attackButtonP2.addEventListener("click", function () {
@@ -184,6 +185,7 @@ attackButtonP2.addEventListener("click", function () {
     turnP2 = false;
     turnP1 = true;
     nextTurn();
+    showbloodP2()
 })
 
 healButtonP1.addEventListener("click", function () {
@@ -204,46 +206,103 @@ healButtonP2.addEventListener("click", function () {
 
 // Attack function with all the modifiers
 function attack(your, opponent) {
-    if (your.item === "sword") {
-        console.log("sword");
-        your.totalDamage = Math.floor(your.damage() * your.itemBonusSword)
-    } else if (opponent.item === "boots") {
-        console.log("boots");
-        let dodgeChance;
+
+    switch (your.item) {
+        case "sword":
+            your.totalDamage = Math.floor(your.damage() * your.itemBonusSword)
+            console.log("sword");
+            break;
+        case "bow":
+            if (Math.random() <= your.itemBonusBow) {
+                your.totalDamage = your.damage() * 2;
+
+            } else {
+                your.totalDamage = your.damage();
+
+            }
+            console.log("bow");
+            break;
+        default:
+            your.totalDamage = your.damage();
+            break;
+    }
+
+    if (opponent.item == "boots") {
         if (Math.random() <= opponent.itemBonusBoots) {
             your.totalDamage = 0;
-            console.log("enemy dodged")
-        } else {
-            your.totalDamage = your.damage()
         }
-    } else if (your.item === "bow") {
-        let doubleAttackValue;
-        if (Math.random() <= your.itemBonusBow) {
-            doubleAttackValue = your.damage();
-            console.log("double attack");
-        } else {
-            doubleAttackValue = 0
-        }
-        your.totalDamage = your.damage() + doubleAttackValue
-    } else if (opponent.race === "human") {
-        console.log("take 20% less damage");
-        your.totalDamage = Math.floor(your.damage() * opponent.classBonusHuman)
-    } else if (opponent.race === "elf") {
-        let reflectValue;
-        if (Math.random() <= opponent.classBonusElf[0]) {
-            reflectValue = Math.floor(your.damage() * opponent.classBonusElf[1])
-            your.currentHealth -= reflectValue
-            console.log("elf reflected your attack")
-        } else if (opponent.race === "vampire") {
-            your.totalDamage = your.damage();
-            opponent.currentHealth += your.currentHealth * opponent.classBonusVampire
-        } else {
-            your.totalDamage = your.damage()
-        }
-    } else {
-        your.totalDamage = your.damage();
     }
+
+    //Race de-modifiers
+    switch (opponent.race) {
+        case "human":
+            your.totalDamage = Math.floor(your.totalDamage * opponent.classBonusHuman);
+            console.log("human");
+            break;
+        case "elf":
+            let reflectValue;
+            if (Math.random() <= opponent.classBonusElf[0]) {
+                reflectValue = Math.floor(your.totalDamage * opponent.classBonusElf[1]);
+                your.currentHealth -= reflectValue;
+            }
+            console.log("elf");
+            break;
+            //still needs some fixing => heals before attack
+        case "vampire":
+            var health = opponent.currentHealth + Math.floor(your.currentHealth * opponent.classBonusVampire);
+            if (health > opponent.maxHealth) {
+                opponent.currentHealth = opponent.maxHealth;
+
+            } else {
+                opponent.currentHealth = health;
+            }
+            console.log("vampire");
+            break;
+    }
+
+    // if (your.item === "sword") {
+    //     console.log("sword");
+    //     your.totalDamage = Math.floor(your.damage() * your.itemBonusSword)
+    // } else if (opponent.item === "boots") {
+    //     console.log("boots");
+    //     let dodgeChance;
+    //     if (Math.random() <= opponent.itemBonusBoots) {
+    //         your.totalDamage = 0;
+    //         console.log("enemy dodged")
+    //     } else {
+    //         your.totalDamage = your.damage()
+    //     }
+    // } else if (your.item === "bow") {
+    //     let doubleAttackValue;
+    //     if (Math.random() <= your.itemBonusBow) {
+    //         doubleAttackValue = your.damage();
+    //         console.log("double attack");
+    //     } else {
+    //         doubleAttackValue = 0
+    //     }
+    //     your.totalDamage = your.damage() + doubleAttackValue
+    // } else if (opponent.race === "human") {
+    //     console.log("take 20% less damage");
+    //     your.totalDamage = Math.floor(your.damage() * opponent.classBonusHuman)
+    // } else if (opponent.race === "elf") {
+    //     let reflectValue;
+    //     if (Math.random() <= opponent.classBonusElf[0]) {
+    //         reflectValue = Math.floor(your.damage() * opponent.classBonusElf[1])
+    //         your.currentHealth -= reflectValue
+    //         console.log("elf reflected your attack")
+    //     } else if (opponent.race === "vampire") {
+    //         your.totalDamage = your.damage();
+    //         //opponent.currentHealth += your.currentHealth * opponent.classBonusVampire
+    //     } else {
+    //         your.totalDamage = your.damage()
+    //     }
+    // } else {
+    //     your.totalDamage = your.damage();
+    // }
+
     opponent.currentHealth -= your.totalDamage;
+
+    //vampireLifestealCheck(your);
     healthBars();
 };
 
@@ -273,21 +332,23 @@ function healthBars() {
     document.getElementById("health2").max = player2.maxHealth;
     if (player1.currentHealth < 1) {
         removeBattlescreen()
-        document.getElementById("winnerscreen").innerHTML = inputFieldP2.value + " wins";
+        document.getElementById("winnerscreenContent").innerHTML = inputFieldP2.value + " wins";
     }
     if (player2.currentHealth < 1) {
         removeBattlescreen()
-        document.getElementById("winnerscreen").innerHTML = inputFieldP1.value + " wins";
+        document.getElementById("winnerscreenContent").innerHTML = inputFieldP1.value + " wins";
     }
 }
 
 function createLogP1() {
+    let li = document.createElement('li')
     let logP1 = inputFieldP1.value + " dealed " + player1.totalDamage + " damage."
     li.innerHTML = logP1
     document.getElementById("log").prepend(li)
 }
 
 function createLogP2() {
+    let li = document.createElement('li')
     let logP2 = inputFieldP2.value + " dealed " + player2.totalDamage + " damage."
     li.innerHTML = logP2
     document.getElementById("log").prepend(li)
@@ -309,6 +370,7 @@ function healLogP2() {
 
 // Disables the opponents buttons when it's your turn (true, false) 
 function nextTurn() {
+
     if (turnP1 === true) {
         attackButtonP1.disabled = false;
         healButtonP1.disabled = false;
@@ -323,19 +385,49 @@ function nextTurn() {
         attackButtonP1.disabled = true;
         healButtonP1.disabled = true;
         yieldButtonP1.disabled = true;
-    } else {}
+    }
+
 }
 
 // When it's your turn checks if your race is a vampire and does lifesteal
-function vampireLifestealCheck() {
+function vampireLifestealCheck(your) {
     if (your.race === "vampire") {
-        if (your.currentHealth += opponent.currentHealth * your.classBonusVampire > 100) {
-            your.currentHealth = 100
+        var health = your.currentHealth + Math.ceil(your.classBonusVampire * your.totalDamage);
+        if (health > your.maxHealth) {
+            your.currentHealth = your.maxHealth;
+
         } else {
-            your.currentHealth += opponent.currentHealth * your / classBonusVampire
+            your.currentHealth = health;
         }
-    } else {}
+    }
 }
+
+
+function showbloodP1() {
+    document.getElementById("bloodyP2").style.display = "block";
+    blood = setTimeout(showbloodtimerP1, 400);
+}
+let blood;
+
+function showbloodtimerP1() {
+    document.getElementById("bloodyP2").style.display = "none"
+}
+showbloodtimerP1()
+
+function showbloodP2() {
+    document.getElementById("bloodyP1").style.display = "block";
+    blood1 = setTimeout(showbloodtimerP2, 400);
+}
+let blood1;
+
+function showbloodtimerP2() {
+    document.getElementById("bloodyP1").style.display = "none"
+}
+showbloodtimerP2()
+
+
+//function setToBlack()
+//{setTimeout ( "setToBlack()", 1000 );document.getElementById("colourButton").style.color = "#000000";}
 
 // ||-------Start the battle-------||
 //link images to buttons

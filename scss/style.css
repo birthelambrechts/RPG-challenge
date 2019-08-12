@@ -56,7 +56,8 @@ img {
           flex-flow: column wrap;
 }
 
-.InputNameP1, .InputNameP2 {
+.InputNameP1,
+.InputNameP2 {
   width: 90%;
   font-size: 20px;
   background-color: #a37bac00;
@@ -64,6 +65,7 @@ img {
   margin-top: 15px;
   border: solid #610337 1px;
   border-radius: 5px;
+  margin: 18px;
 }
 
 ::-webkit-input-placeholder {
@@ -132,16 +134,21 @@ img {
   height: 50PX;
 }
 
-.itemExplP1, .raceExplP1, .itemExplP2, .raceExplP2 {
+.itemExplP1,
+.raceExplP1,
+.itemExplP2,
+.raceExplP2 {
   width: 100%;
   height: 30px;
 }
 
-.startP1, .startP2 {
+.startP1,
+.startP2 {
   background-color: #d8b1c881;
 }
 
-.containerInfo, .containerInfoP2 {
+.containerInfo,
+.containerInfoP2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -154,7 +161,8 @@ img {
           justify-content: center;
 }
 
-.infoP1, .infoP2 {
+.infoP1,
+.infoP2 {
   font-size: 32px;
 }
 
@@ -190,7 +198,8 @@ body {
           justify-content: space-between;
 }
 
-.log {
+.log,
+#log {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -198,9 +207,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
-.playerAvatars, .actions {
+.playerAvatars,
+.actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -225,7 +237,7 @@ body {
 }
 
 .log {
-  width: 200px;
+  width: 400px;
   height: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -278,6 +290,42 @@ body {
   height: 40px;
 }
 
+.yieldP2 a,
+.yieldP1 a {
+  text-decoration: none;
+  color: black;
+}
+
+.bloodyP1 {
+  margin: -200px 0px 0px -650px;
+}
+
+.bloodyP1 #bloodimg1 {
+  width: 60px;
+  height: 60px;
+}
+
+.bloodyP1 #bloodimg2 {
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+}
+
+.bloodyP2 {
+  margin: -200px 0px 0px 640px;
+}
+
+.bloodyP2 #bloodimg1-2 {
+  width: 80px;
+  height: 80px;
+}
+
+.bloodyP2 #bloodimg2-2 {
+  width: 60px;
+  height: 60px;
+  margin: 30px;
+}
+
 @font-face {
   font-family: 'MyWebFont';
   src: url("Something Strange.ttf");
@@ -294,6 +342,14 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   color: red;
+  font-family: 'MyWebFont', Fallback, sans-serif;
+}
+
+#again {
+  background-color: rgba(0, 255, 255, 0);
+  border: none;
+  color: red;
+  font-size: 30px;
   font-family: 'MyWebFont', Fallback, sans-serif;
 }
 /*# sourceMappingURL=style.css.map */

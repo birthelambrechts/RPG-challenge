@@ -1,52 +1,56 @@
-body{
-    color:rgb(97, 3, 55);
+body {
+    color: rgb(97, 3, 55);
     background-image: url("bg.png");
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
-.battlescreen{
+.battlescreen {
     font-size: 20px;
-    display:flex;
-    flex-direction: column;
-    text-align: center;  
-}
-
-
-.heading{
-    display:flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-}
-
-
-.log{
-    display:flex;
-    flex-direction: column;
-}
-
-
-
-.playerAvatars, .actions{
     display: flex;
-    flex-direction: row; 
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.log,
+#log {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.playerAvatars,
+.actions {
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 
-.avatarP1{
+.avatarP1 {
     margin-top: 17%;
     width: 200px;
     height: 200px;
 }
 
-.avatarP2{
+.avatarP2 {
     margin-top: 17%;
     width: 200px;
     height: 200px;
 }
 
-.log{
-    width: 200px;
+.log {
+    width: 400px;
     height: 70px;
     display: flex;
     flex-direction: row;
@@ -58,40 +62,77 @@ body{
 
 
 
-#health2{
-    transform:rotate(180deg);
--ms-transform:rotate(180deg); 
--webkit-transform:rotate(180deg); 
+#health2 {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
 }
 
 
-#ItemLogoP1{
+#ItemLogoP1 {
     width: 40px;
     height: 40px;
 }
 
-#ItemLogoP2{
+#ItemLogoP2 {
     width: 40px;
     height: 40px;
 }
 
-.movelistP1{
-    padding:5px;
+.movelistP1 {
+    padding: 5px;
     margin: 15px 3px 3px 3px;
     background-color: rgba(83, 80, 80, 0.233);
-    button{
+
+    button {
         font-size: 20px;
         width: 80px;
-    height: 40px;
+        height: 40px;
     }
 }
-.movelistP2{
-    padding:5px;
+
+.movelistP2 {
+    padding: 5px;
     margin: 15px 3px 3px 3px;
     background-color: rgba(83, 80, 80, 0.233);
-    button{
+
+    button {
         font-size: 20px;
         width: 80px;
-    height: 40px;
+        height: 40px;
     }
 }
+
+.yieldP2,
+.yieldP1 {
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.bloodyP1{
+margin: -200px 0px 0px -650px;
+    #bloodimg1{
+    width: 60px;
+    height: 60px;
+}
+    #bloodimg2{
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+}
+}
+
+.bloodyP2{
+    margin: -200px 0px 0px 640px;
+        #bloodimg1-2{
+        width: 80px;
+        height: 80px;
+    }
+        #bloodimg2-2{
+        width: 60px;
+        height: 60px;
+        margin: 30px;
+    }
+    }

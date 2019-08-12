@@ -1,9 +1,8 @@
-
 .startscreen {
     font-size: 20px;
     display: flex;
     flex-direction: row;
-    text-align:center;
+    text-align: center;
     justify-content: center;
 
     button {
@@ -14,17 +13,19 @@
         margin-top: 8px;
         border: solid #a37bac 2px;
         border-radius: 10px;
-        color:rgb(97, 3, 55);
+        color: rgb(97, 3, 55);
     }
+
     .activebutton {
         background-color: pink;
     }
 }
 
-img{
+img {
     width: 200px;
     height: 200px;
 }
+
 .selectRaceP1,
 .selectItemsP1,
 .selectRaceP2,
@@ -35,88 +36,97 @@ img{
     display: flex;
     flex-flow: column wrap;
 }
-.InputNameP1, .InputNameP2{
+
+.InputNameP1,
+.InputNameP2 {
     width: 90%;
     font-size: 20px;
     background-color: #a37bac00;
-    padding:5px;
+    padding: 5px;
     margin-top: 15px;
     border: solid rgb(97, 3, 55) 1px;
     border-radius: 5px;
-
+    margin: 18px;
 }
 
-::placeholder{
-    color:rgb(97, 3, 55);
+::placeholder {
+    color: rgb(97, 3, 55);
 }
 
 .versus {
     display: flex;
-  align-items: center;
+    align-items: center;
     padding: 20px;
-    background-color :#d8b1c881;
+    background-color: #d8b1c881;
 }
 
-.imageRaceP1{
+.imageRaceP1 {
     width: 200px;
     height: 200px;
 }
 
-.imageRaceP2{
+.imageRaceP2 {
     width: 200px;
     height: 200px;
 }
 
-.imageItemP1{
+.imageItemP1 {
     width: 200px;
     height: 200px;
 }
 
-.imageItemP2{
+.imageItemP2 {
     width: 200px;
     height: 200px;
 }
 
 
-.ready{
+.ready {
     margin-left: -49%;
-    
 
-button{
-    width: 300px;
-    margin-bottom: 10px;
-}
-}
 
-.buttonP1{
-    button{
-    width: 100%;
-    height: 50PX;
-}
-}
-.buttonP2{
-    button{
-    width: 100%;
-    height: 50PX;
-}
+    button {
+        width: 300px;
+        margin-bottom: 10px;
+    }
 }
 
-.itemExplP1, .raceExplP1, .itemExplP2, .raceExplP2{
+.buttonP1 {
+    button {
+        width: 100%;
+        height: 50PX;
+    }
+}
+
+.buttonP2 {
+    button {
+        width: 100%;
+        height: 50PX;
+    }
+}
+
+.itemExplP1,
+.raceExplP1,
+.itemExplP2,
+.raceExplP2 {
     width: 100%;
     height: 30px;
 }
 
 
-.startP1, .startP2{
-    background-color:#d8b1c881;
+.startP1,
+.startP2 {
+    background-color: #d8b1c881;
 }
 
-.containerInfo, .containerInfoP2{
-display: flex;
-flex-direction: row;
-justify-content: center;
+.containerInfo,
+.containerInfoP2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.infoP1, .infoP2{
+.infoP1,
+.infoP2 {
     font-size: 32px;
 }
